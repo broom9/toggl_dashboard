@@ -6,4 +6,7 @@ This small webapp is for that. It shows each member's current active task.
 
 It's based on [Google App Engine](https://developers.google.com/appengine/), [BootStrap](http://twitter.github.com/bootstrap/) and [Gravatar](http://gravatar.com).
 
-The only configuration is to copy the `tokens.example.py` to `tokens.py` then put your team members' Toggl API tokens there.
+# Configuration 
+
+* Copy `tokens.example.py` to `tokens.py`, then put your team members' Toggl API tokens there.
+* Copy `app.example.yaml` to `app.yaml`, then do App Engine configurations in it. Applicaiton name must be changed.
