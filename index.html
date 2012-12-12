@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+
+<html>
+  <head>
+		<meta http-equiv="refresh" content="60">
+		
+    <title>Toggl Dashboard</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.timeago.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$.ajax({
+					type: "GET",
+					url: "/proxy", 
+					dataType: "json",
+					success: function(data) {
+						console.log(data);
+						$.each(data, function(i, r){
+						  var row = $("#t tbody").append("<tr/>");
+							row.append('<td><img width="48px" height="48px" src="http://www.gravatar.com/avatar/' + r["email_md5"] +'.jpg?s=48&d=monsterid"></img></td>')
+							row.append("<td>" + r["fullname"] + "</td>");
+							var te = r["time_entry"][0];
+							row.append("<td>" + (te ? te["description"] : "-") + "</td>");
+							row.append("<td>" + (te ? $.timeago(te["start"]) : "-") + "</td>");
+						});
+					}
+				});
+			});
+		</script>
+  </head>
+  <body>
+		<table id="t" class="table table-striped">
+			<thead>
+				<tr>
+					<td></td>
+					<td>User</td>
+					<td>Task</td>
+					<td>Started</td>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</body>
+</html>
